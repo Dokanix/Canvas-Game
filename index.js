@@ -60,9 +60,10 @@ class Enemy extends Movable {
 }
 
 class Particle extends Movable {
-  constructor(x, y, radius, color, velocity, speed = 2) {
+  constructor(x, y, radius, color, velocity, speed = 5) {
     super(x, y, radius, color, velocity, speed);
-    this.alpha = 1;
+    this.alpha = 0.8;
+    this.friction = 0.98;
   }
 
   draw() {
@@ -73,6 +74,8 @@ class Particle extends Movable {
   }
 
   update() {
+    this.velocity.x *= this.friction;
+    this.velocity.y *= this.friction;
     super.update();
     this.alpha -= 0.01;
   }
